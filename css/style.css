@@ -1255,3 +1255,14 @@ button#center-scene:active span.info:after {
 }
 .reload { cursor: pointer; }
 .btn-base, #joystick { cursor: pointer; }
+
+
+/*** SIDE ART: supplied light-trail image on both outer side panels ***/
+/* .cuboid.left: side 4 faces outward (left). .cuboid.right: side 3 faces outward (right).
+   The panels keep the original cabinet-profile clip-path, so the art follows
+   the side silhouette. */
+.cuboid.left .side:nth-of-type(4),
+.cuboid.right .side:nth-of-type(3) {
+	background: #000 url("../assets/side-art.jpg") center / cover no-repeat;
+	border-color: #ffffff14;
+}
