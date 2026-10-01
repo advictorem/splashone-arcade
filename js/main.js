@@ -98,16 +98,18 @@ function pulseScreen(name) {
 	screenEl.classList.add(name);
 }
 
-// Coin slot: original credit sound. (The original reloaded the page to restart
-// Tetris; here it just adds a credit and flashes the screen.)
+// Coin slot: plays the original credit sound, flashes the screen and opens the
+// SplashOne simulator in a new tab (the link itself lives on the <a> in index.html).
+var SIMULATOR_URL = elem("reload").href;
+
 function newCredit() {
 	credits++;
 	playSfx(aCredit);
 	pulseScreen("credit");
 }
 
-elem("reload").addEventListener("click", function (e) {
-	e.preventDefault();
+// Click / tap: let the link's default behaviour open the new tab.
+elem("reload").addEventListener("click", function () {
 	newCredit();
 });
 
@@ -177,13 +179,16 @@ document.addEventListener("keydown", function (e) {
 	if (e.which === 38 || e.which === 32) pressButton();
 
 	// C or 5 inserts a coin (5 is the classic arcade coin key)
-	if (e.which === 67 || e.which === 53) newCredit();
+	if (e.which === 67 || e.which === 53) {
+		newCredit();
+		window.open(SIMULATOR_URL, "_blank", "noopener");
+	}
 
 	// Esc re-centres the cabinet
 	if (e.which === 27) {
 		scene.style.left = 0;
 		scene.style.top = 0;
-		sceneCamera.style = "--scale:80";
+		sceneCamera.style = isEmbedded ? "" : "--scale:80";
 	}
 });
 
@@ -194,34 +199,50 @@ document.addEventListener("keyup", function () {
 
 /*** CAMERA SYSTEM (original) ***/
 
+// SPLASHONE: embedded in another page (see the inline script in index.html)
+var isEmbedded = document.documentElement.classList.contains("embed");
+
 window.addEventListener("load", () => {
-	new Camera()
+	var camera = new Camera()
 		.setOptimalPerspective()
 		.with({
 			debug: false,
 			zoom: {
+				// Embedded: leave the mouse wheel to the host page so scrolling
+				// past the cabinet is never hijacked.
+				only: isEmbedded ? "pinch" : false,
 				range: [60, 200]
 			},
 			rotate: {
 				speed: 1.2
 			}
-		})
-		.init();
+		});
+	camera.init();
+
+	// A touch that turns into a page scroll is cancelled by the browser and
+	// never fires pointerup, so end the camera drag here as well.
+	window.addEventListener("pointercancel", function (e) {
+		try {
+			camera.disposeEvents(e);
+		} catch (err) {}
+	});
 });
 
-/*** SET FOCUS (original) ***/
-window.addEventListener("load", () => {
-	window.focus();
-});
-window.addEventListener(
-	"keydown",
-	function (e) {
-		if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
-			e.preventDefault();
-		}
-	},
-	false
-);
+/*** SET FOCUS (original; standalone page only) ***/
+if (!isEmbedded) {
+	window.addEventListener("load", () => {
+		window.focus();
+	});
+	window.addEventListener(
+		"keydown",
+		function (e) {
+			if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+				e.preventDefault();
+			}
+		},
+		false
+	);
+}
 
 // SPLASHONE: double-clicking a control should not start the camera's auto-rotate
 [elem("reload"), btnBase, elem("joystick")].forEach(function (el) {
