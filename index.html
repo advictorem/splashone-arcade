@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SplashOne Arcade | Air Superiority</title>
 <meta name="description" content="SplashOne arcade cabinet featuring Air Superiority.">
+<script>
+	// SPLASHONE: when the cabinet is shown inside another page (iframe) or with ?embed, use the bare "embed" presentation.
+	if (window.self !== window.top || /[?&]embed\b/.test(location.search)) document.documentElement.classList.add("embed");
+</script>
 <link rel="icon" href="./assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="./css/style.css">
@@ -143,7 +147,8 @@
 
 				<div class="cuboid coins">
 					<div class="side">
-						<a class="reload" id="reload" href="#" role="button" aria-label="Insert coin" data-isolated><span class="coin" data-isolated></span></a>
+						<!-- SPLASHONE: the coin slot opens the simulator in a new tab -->
+						<a class="reload" id="reload" href="https://www.splashone.ai/simulate" target="_blank" rel="noopener" aria-label="Insert coin: launch the SplashOne simulator (opens in a new tab)" data-isolated><span class="coin" data-isolated></span></a>
 					</div>
 					<div class="side"></div>
 					<div class="side"></div>
