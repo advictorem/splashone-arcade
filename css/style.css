@@ -1266,3 +1266,27 @@ button#center-scene:active span.info:after {
 	background: #000 url("../assets/side-art.jpg") center / cover no-repeat;
 	border-color: #ffffff14;
 }
+
+
+/*** EMBED MODE: cabinet shown inside another page (e.g. the SplashOne site footer) ***/
+/* html.embed is set by the inline script in index.html. */
+html.embed,
+html.embed body {
+	background: transparent;
+}
+
+/* hide the standalone utility buttons */
+html.embed body > button {
+	display: none;
+}
+
+/* fill the frame: the cabinet is 80vmin tall, so 100% leaves room for the marquee overhang and for rotating */
+html.embed [data-camera] {
+	--scale: 100;
+}
+
+/* touch: vertical swipes scroll the host page, horizontal drags rotate the cabinet */
+html.embed,
+html.embed body {
+	touch-action: pan-y;
+}
