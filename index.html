@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SplashOne Arcade | Air Superiority</title>
+<meta name="description" content="SplashOne arcade cabinet featuring Air Superiority.">
+<link rel="icon" href="./assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<!--
+  SplashOne / Air Superiority arcade cabinet.
+  3D CSS cabinet adapted from "Tetris Arcade Game - Atari 1988" by Josetxu
+  (https://codepen.io/josetxu/pen/bGKqxyR).
+-->
+<section data-camera="data-camera">
+
+	<section data-scene="data-scene">
+
+		<div class="scene">
+
+			<div class="content" id="content">
+
+				<div class="cuboid top">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+				
+				<div class="cuboid top-bot">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+				
+				<div class="cuboid top-front">
+					<!-- SPLASHONE: supplied marquee artwork -->
+					<div class="side marquee"><img src="./assets/splashone-title.png" alt="SplashOne" draggable="false"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<div class="cuboid bot">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+				
+				<div class="cuboid bot-front">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+				
+				<div class="cuboid bot-top">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<div class="cuboid back">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<div class="cuboid left">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+				
+				<div class="cuboid left-front">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<div class="cuboid right">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+				
+				<div class="cuboid right-front">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<div class="cuboid box">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+				
+				<div class="cuboid screen">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<div class="cuboid coins">
+					<div class="side">
+						<a class="reload" id="reload" href="#" role="button" aria-label="Insert coin" data-isolated><span class="coin" data-isolated></span></a>
+					</div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<!-- SPLASHONE: supplied AIR SUPERIORITY screen artwork (replaces the Tetris canvas + HUD) -->
+				<div class="game-screen" id="game-screen">
+					<img src="./assets/screen.png" alt="Air Superiority" draggable="false">
+					<span class="crt"></span>
+				</div>
+				<div class="cuboid glass" id="glass">
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+					<div class="side"></div>
+				</div>
+
+				<div class="controller" id="controller">
+					<div id="joystick">
+						<div class="stick-ball">
+							<div class="face">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="face">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="face">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="face">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="face">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="face">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+						<div class="stick">
+							<div class="cylinder">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+					<div class="base"></div>
+					<div class="btn-base">
+						<div id="btn">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</section>
+
+<!-- Original arcade audio, unchanged (still served from the original author's CDN) -->
+<audio src="https://cdn.josetxu.com/audio/tetris-credit.mp3" id="a-credit"> </audio>
+<audio src="https://cdn.josetxu.com/audio/tetris-loginska.mp3" id="a-music1" loop preload="auto"> </audio>
+<audio src="https://cdn.josetxu.com/audio/tetris-troika.mp3" id="a-music2" loop preload="auto"> </audio>
+<audio src="https://cdn.josetxu.com/audio/tetris-bradinsky.mp3" id="a-music3" loop preload="auto"> </audio>
+<audio src="https://cdn.josetxu.com/audio/tetris-line.mp3" id="a-line"> </audio>
+<audio src="https://cdn.josetxu.com/audio/tetris-round.mp3" id="a-round"> </audio>
+<audio src="https://cdn.josetxu.com/audio/tetris-gameover.mp3" id="a-gameover"> </audio>
+
+<button id="sound" onclick="toggleSound()" class=""><span class="info"></span></button>
+<button id="music" onclick="togglePlay()" class="off"><span class="info"></span></button>
+<button id="modes" onclick="toggleView()" class=""><span class="info"></span></button>
+<button id="front-glass" onclick="toggleGlass()" class=""><span class="info"></span></button>
+<button id="block-joystick" onclick="toggleJoystick()" class=""><span class="info"></span><span></span></button>
+<button id="center-scene" onclick="centerScene()" class=""><span class="info"></span><span></span></button>
+<script src="./js/camera.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>
